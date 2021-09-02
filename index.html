@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="row" id="product-list-component">  
+    </div>
+    <h3>Új termék létrehozása:</h3>
+    <div class="row">
+      <form id="create-product" class="p-5">
+          <label class="w-100">
+            Név:
+            <input class="form-control" type="text" name="name">
+          </label>
+          <label class="w-100">
+            Ára:
+            <input class="form-control" type="number" name="price">
+          </label>
+          <label class="w-100">
+           Elérhető?
+            <input class="form-control" type="checkbox" name="isInBox"> 
+          </label>
+          <button class="btn btn-primary" type="submit">Küldés</button>
+      </form>
+    </div>
+    <div class="row">
+      <div id="edit-product">
+      </div>
+    </div>
+ <script src="js/main.js"></script>
+</body>
+</html>
