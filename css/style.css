@@ -1,3 +1,19 @@
 *{box-sizing: border-box;
-    background-color: aquamarine;}
+    background-color: aquamarine;
+}
     .new { color: brown;}
+    .row{display: flex;
+    flex-direction: row;
+    justify-content: center;
+margin: 10px;}
+.card{
+    border: 10px solid red;
+    text-align: center;
+    font-size: 20px;
+     border-radius: 20%;
+     max-width: 150px;
+     margin: 10px;
+     background-color: royalblue;
+     ;
+
+}
