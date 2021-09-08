@@ -26,11 +26,12 @@ var state ={
         isInStock:true,
     },]
 }
-
+console.log(state.products[1])
 function renderProducts() {
    var productHTML = '';
 
 for ( var product of state.products){
+    
 
     productHTML +=`
     <div class ="card ${product.isInStock ? '' : 'bg-danger'}">
