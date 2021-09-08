@@ -33,7 +33,7 @@ function renderProducts() {
 for ( var product of state.products){
 
     productHTML +=`
-    <div class ="card">
+    <div class ="card ${product.isInStock ? '' : 'bg-danger'}">
    <p>${product.name}</p>
    <p>${product.price}</p> 
    </div>
