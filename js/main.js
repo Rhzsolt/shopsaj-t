@@ -10,7 +10,7 @@ var state ={
     products:[{
         name:'Trappista',
         price:1500,
-        isInStock:true,
+        isInStock:false,
     
     },
 
@@ -33,9 +33,9 @@ function renderProducts() {
 for ( var product of state.products){
 
     productHTML +=`
-    <div class ='card'>
+    <div class ="card">
    <p>${product.name}</p>
-   <p>${product.price}</p>
+   <p>${product.price}</p> 
    </div>
     `;
 }
@@ -44,3 +44,20 @@ document.getElementById("product-list-component").innerHTML = productHTML;
 
 }
 window.onload = renderProducts();
+
+document.getElementById("create-product").onsubmit = function (event) {
+    event.preventDefault();
+
+    var price=event.target.elements.price.value;
+    var name = event.target.elements.name.value;
+    var isInStock = event.target.elements.isInStock.checked;
+
+state.products.push({
+    name:name,
+    price:price,
+    isInStock:isInStock});
+
+    renderProducts();
+
+}
+   
