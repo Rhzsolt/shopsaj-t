@@ -26,7 +26,9 @@ var state ={
         isInStock:true,
     },]
 }
-console.log(state.products[1])
+
+
+
 function renderProducts() {
    var productHTML = '';
 
@@ -40,16 +42,18 @@ for ( var product of state.products){
    </div>
     `;
 }
-
 document.getElementById("product-list-component").innerHTML = productHTML;
-
 }
+
+
 window.onload = renderProducts();
 
 document.getElementById("create-product").onsubmit = function (event) {
-    event.preventDefault();
+    event.preventDefault(); 
+  
 
     var price=event.target.elements.price.value;
+   
     var name = event.target.elements.name.value;
     var isInStock = event.target.elements.isInStock.checked;
 
