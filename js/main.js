@@ -82,6 +82,8 @@ document.getElementById("create-product").onsubmit = function(event){
   var name = event.target.elements.name.value;
   var price = Number(event.target.elements.price.value);
   var isInStock = event.target.elements.isInStock.checked;
+
+  
   
 
   state.products.push({
