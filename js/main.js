@@ -56,6 +56,7 @@ document.getElementById("create-product").onsubmit = function (event) {
    
     var name = event.target.elements.name.value;
     var isInStock = event.target.elements.isInStock.checked;
+console.log(isInStock)
 
 state.products.push({
     name:name,
