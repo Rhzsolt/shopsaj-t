@@ -116,6 +116,7 @@ function renderProducts() {
    {
      edtbutt.onclick = function(event){
        var edbtn = event.target.dataset.butid;
+      
 
        state.editedId = edbtn;
        renderEditProducts()
@@ -161,8 +162,6 @@ document.getElementById("create-product").onsubmit = function(event){
   })
   renderProducts();
 }
-
-
 
 
 
