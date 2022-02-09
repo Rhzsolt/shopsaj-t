@@ -6,49 +6,57 @@ Delete*/
 
 
 /*read*/
-var state ={
-    products:[{
-        id:uuidv4(),
-        name:'Trappista',
-        price:1500,
-        isInStock:false,
-    
+var state = {
+  products: [
+    {
+      id: uuidv4(),
+      name: 'Trappista',
+      price: 1500,
+      isInStock: false,
     },
 
-    {   id:uuidv4(),
-        name:'Edami',
-        price:2500,
-        isInStock:true,
+    {
+      id: uuidv4(),
+      name: 'Edami',
+      price: 2500,
+      isInStock: true,
     },
 
-    {   id:uuidv4(),
-        name:'Gouda',
-        price:3500,
-        isInStock:true,
-    },],
-    editedId :''
+    {
+      id: uuidv4(),
+      name: 'Gouda',
+      price: 3500,
+      isInStock: true,
+    }],
+  editedId: ''
 }
-  
 
 
-function renderEditProducts(){
+/////////////////-SZERKESZTÓ--/////////////////////////////////////
 
-  if(state.editedId === ''){
+function renderEditProducts() {
+
+  if (state.editedId === '') {
 
     document.getElementById('edit-product').innerHTML = '';
     return;
-    
+
   }
+
+
+
+
   var talProduct;
 
-  for(var product of state.products){
+  for (var product of state.products) {
 
-    if(product.id === state.editedId){
-        talProduct = product;break
+    if (product.id === state.editedId) {
+      talProduct = product 
+        ; break
     }
   }
 
- var editFormHTML =`<form id="update-product" class="p-5">
+  var editFormHTML = `<form id="update-product" class="p-5">
  <label class="w-100">
   Név:
   <input class="form-control" type="text" name="name" value="${talProduct.name}">
@@ -63,45 +71,44 @@ function renderEditProducts(){
  </label>
  <button class="btn btn-primary" type="submit">Küldés</button>
  </form>
- ` 
+ `
 
- document.getElementById('edit-product').innerHTML = editFormHTML;
+  document.getElementById('edit-product').innerHTML = editFormHTML;
 
-  document.getElementById('update-product').onsubmit = function(event){
+  document.getElementById('update-product').onsubmit = function (event) {
 
-   event.preventDefault()
+    event.preventDefault()
 
-   var name = event.target.elements.name.value;
-   var price = Number(event.target.elements.price.value);
-   var isInStock = event.target.elements.isInStock.checked;
+    var name = event.target.elements.name.value;
+    var price = Number(event.target.elements.price.value);
+    var isInStock = event.target.elements.isInStock.checked;
 
-   var talindex;
+    var talindex;
 
-   for( var i = 0; i< state.products.length; i++) {
-    if( state.products[i].id === state.editedId){talindex = i; break;}
-   }
+    for (var i = 0; i < state.products.length; i++) {
+      if (state.products[i].id === state.editedId) { talindex = i; break; }
+    }
 
-   state.products[talindex]={
+    state.products[talindex] = {
 
-    id:state.editedId,
-    name:name,
-    price:price,
-    isInStock:isInStock,
-   }
-   state.editedId = '';
-   renderProducts();
-   renderEditProducts();
- } 
+      id: state.editedId,
+      name: name,
+      price: price,
+      isInStock: isInStock,
+    }
+    state.editedId = '';
+    renderProducts();
+    renderEditProducts();
+  }
 }
-
-
+///////////////////////////////--RENDERELŐ-----////////////////////////////////////////////////////////////
+////////////LÉTREHOZÁS CREATE!!!!!
 function renderProducts() {
-   var productHTML = '';
+  var productHTML = '';
 
-    for ( var product of state.products){
-
+  for (var product of state.products) {
     productHTML +=
-    `
+      `
    <div class ="card ${product.isInStock ? '' : 'bg-primary'} ">
    <p>${product.name}</p>
    <p>${product.price}</p>
@@ -109,44 +116,44 @@ function renderProducts() {
    <button class = " btn btn-danger deletebut" data-butid="${product.id}">Törlés</button>
    </div>
    `}
-   document.getElementById("product-list-component").innerHTML = productHTML;  
+  document.getElementById("product-list-component").innerHTML = productHTML;
+/////////////////////////////////////SZERKESZTŐ GOMBOT FELTESZI//////////////////////////////////////
+  for (var edtbutt of document.querySelectorAll('.editbut')) {
+    edtbutt.onclick = function (event) {
+      var edbtn = event.target.dataset.butid;
 
-   for( var edtbutt of document.querySelectorAll('.editbut'))
 
-   {
-     edtbutt.onclick = function(event){
-       var edbtn = event.target.dataset.butid;
-      
+      state.editedId = edbtn;
+      renderEditProducts()
 
-       state.editedId = edbtn;
-       renderEditProducts()
-       
-     }
-   }
-
-  for( var butt of document.querySelectorAll('.deletebut')){
-       
-butt.onclick = function(event){
-   var id = event.target.dataset.butid;
-
-   var talindex;
-
-  for( var i = 0; i< state.products.length; i++) {
-    if( state.products[i].id === id){talindex = i; break;}
+    }
   }
-  state.products.splice(talindex,1);
+//////////////////////////TÖRLŐ GOMB ÉS TÖRLÉS////////////////////////////////////////
+  for (var butt of document.querySelectorAll('.deletebut')) {
 
-  renderProducts();
-}   }   };
+    butt.onclick = function (event) {
+      var id = event.target.dataset.butid;
+
+      var talindex;
+
+      for (var i = 0; i < state.products.length; i++) {
+        if (state.products[i].id === id) { talindex = i; break; }
+      }
+      state.products.splice(talindex, 1);
+
+      renderProducts();
+    }
+  }
+};
 
 
 
 
 
 
+////////////////////////////////READ-KIOLVAS  A MEGLEVŐ SZERKESZTŐVEL/////////////////////////////////////////////
 
- 
-document.getElementById("create-product").onsubmit = function(event){
+document.getElementById("create-product").onsubmit = function (event) {
 
   event.preventDefault()
 
@@ -155,10 +162,10 @@ document.getElementById("create-product").onsubmit = function(event){
   var isInStock = event.target.elements.isInStock.checked;
 
   state.products.push({
-    id:uuidv4(),
-    name:name,
-    price:price,
-    isInStock:isInStock,
+    id: uuidv4(),
+    name: name,
+    price: price,
+    isInStock: isInStock,
   })
   renderProducts();
 }
@@ -166,11 +173,11 @@ document.getElementById("create-product").onsubmit = function(event){
 
 
 
- window.onload = renderProducts();
 
 
- function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
@@ -178,4 +185,5 @@ document.getElementById("create-product").onsubmit = function(event){
 
 
 
- 
+
+window.onload = renderProducts();
